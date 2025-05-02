@@ -33,6 +33,20 @@ conda env create -f name_you_like.yml
 
 ```
 
+### Alternatively...
+I have also provided a `requirements.txt` file to install the required packages.
+I, as well as the original authors, have used **Python 3.10**.
+
+However, please note that this solution has not been tested.
+
+In order to install the required packages:
+```bash
+# from main directory (vl_mamba)
+chmod +x prepare_dirs.sh
+./prepare_dirs.sh
+pip install -r requirements.txt
+```
+
 ## Reproducing the experiments I have reproduced
 
 Due to resource constraints and technical problems (i.e., mambavl_790m was unable to be loaded as, apparently, the file was broken) I wasn't able to reproduce all the results. However, I reproduced a good deal of them, selecting one dataset per task and comparing both models for the 1.4B parameters variant.
