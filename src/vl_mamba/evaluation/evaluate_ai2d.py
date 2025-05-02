@@ -191,7 +191,7 @@ class AI2DEvalDataset(BaseEvalDataset):
             trust_remote_code=True,
         )[self._split]
 
-        (dataset_indices_unpacked, dataset_size) = self._compute_dataset_size()
+        (dataset_indices_unpacked, dataset_size) = self._compute_dataset_size(split = DatasetSplits.TEST)
         self.dataset_indices_unpacked = dataset_indices_unpacked
         self.dataset_size = dataset_size
 
@@ -309,7 +309,7 @@ def pythia_generate(
         do_sample=generation_args.do_sample,
     )
 
-    with torch.autocast("cuda", dtype=torch.bfloat16):
+    with torch.autocast("cuda", dtype = torch.float16):  # dtype=torch.bfloat16
         outputs = model.generate(
             input_ids=input_ids,
             pixel_values=[pixel_values],

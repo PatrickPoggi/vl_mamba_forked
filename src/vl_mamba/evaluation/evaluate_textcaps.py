@@ -225,7 +225,7 @@ def pythia_generate(  # type: ignore[report]
         do_sample=generation_args.do_sample,
     )
 
-    with torch.autocast("cuda", dtype=torch.bfloat16):
+    with torch.autocast("cuda", dtype = torch.float16):  # dtype=torch.bfloat16
         outputs = model.generate(
             input_ids=input_ids,
             pixel_values=[pixel_values],

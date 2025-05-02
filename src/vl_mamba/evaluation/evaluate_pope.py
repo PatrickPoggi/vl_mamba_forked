@@ -217,7 +217,7 @@ def pythia_generate(
         do_sample=generation_args.do_sample,
     )
 
-    with torch.autocast("cuda", dtype=torch.bfloat16):
+    with torch.autocast("cuda", dtype = torch.float16):  # dtype=torch.bfloat16
         outputs = model.generate(
             input_ids=input_ids,
             pixel_values=[pixel_values],
@@ -243,6 +243,7 @@ def evaluate() -> None:
         dataset_cache_dir=data_args.dataset_cache_dir,
         root_dataset_path=data_args.root_dataset_path,
         dataset_subset=data_args.eval_dataset_subset,
+        split=data_args.split,                              # TODO: Added later
         tokenizer=tokenizer,
         image_mean=data_args.image_mean,
         image_std=data_args.image_std,

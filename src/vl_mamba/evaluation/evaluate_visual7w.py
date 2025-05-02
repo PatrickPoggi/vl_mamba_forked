@@ -397,7 +397,7 @@ def pythia_generate(
         pad_token_id=0,
         do_sample=False,
     )
-    with torch.autocast("cuda", dtype=torch.bfloat16):
+    with torch.autocast("cuda", dtype = torch.float16):  # dtype=torch.bfloat16
         outputs = model.generate(
             input_ids=input_ids,
             pixel_values=[pixel_values],
@@ -456,8 +456,9 @@ def evaluate() -> None:
     pbar = tqdm(indices, desc=description)
     for idx in pbar:
         instance = dataset[idx]
-        if instance.raw_target["source"] == "pointing":  # type: ignore[report]
-            continue
+        # uncommenting the following if will make the evaluation run only the test T (telling) and not the test P (pointing)
+        # if instance.raw_target["source"] == "pointing":  # type: ignore[report] 
+            # continue 
 
         if isinstance(model, VLMambaLMHeadModel | VLMambaCLIPLMHeadModel):
             outputs = mamba_generate(

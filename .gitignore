@@ -1,3 +1,6 @@
+__MACOSX/*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -160,3 +163,40 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+
+results2/*
+
+# cache
+cache/*
+cache/datasets/*.lock
+cache/datasets/vl_mamba/*
+
+
+# storage
+storage/*
+storage/datasets/ai2d/
+storage/datasets/coco/
+storage/datasets/gqa/
+storagedatasets/nocaps/
+storage/datasets/textcaps/
+storage/datasets/tmp/
+storage/datasets/visual7w/
+storage/datasets/vl_mamba/
+storage/datasets/vsr/
+
+# checkpoints
+checkpoints/*
+checkpoints/finetuned_mambavl_1.4b/
+checkpoints/finetuned_mambavl_2.8b/
+checkpoints/finetuned_mambavl_790m/
+checkpoints/finetuned_790_old/
+checkpoints/finetuned_pythiavl_1.4b/
+checkpoints/finetuned_pythiavl_1b/
+checkpoints/finetuned_pythiavl_2.8b/
+
+
+results/finetuned_mambavl_790m/
+results/finetuned_pythiavl_1b/
+
+scripts/commands_launched.txt

@@ -131,7 +131,7 @@ class BaseEvalDataset(Dataset[DatasetItem]):
 @dataclass
 class BaseModelArguments:
     """Base Model arguments."""
-
+    
     model_name: str = field(default="state-spaces/mamba-790m")
     cross_attention_config: str = field(default="configs/model/mamba-790m_layer_interval4.json")
     vision_encoder_name: Literal[
@@ -152,6 +152,7 @@ class BaseModelArguments:
     tokenizer_padding_side: Literal["right", "left"] = field(default="right")
     tokenizer_add_special_tokens: bool = field(default=True)
     model_max_length: int = field(default=100)
+    use_flash_attention_2: bool = field(default=False)  # Added this line
     pixel_based: bool = field(default=False)
 
 
@@ -228,7 +229,7 @@ def build_model(model_args: BaseModelArguments) -> ModelType:
                 image_size=model_args.image_size,
                 select_layer=model_args.select_layer,
                 select_feature=model_args.select_feature,
-                use_flash_attention_2=True,
+                use_flash_attention_2=model_args.use_flash_attention_2,  # Use the argument value
             )
 
     extrapolate = model_args.extrapolate_image_size is not None
@@ -254,7 +255,7 @@ def build_tokenizer(model_args: BaseModelArguments) -> transformers.AutoTokenize
     tokenizer = transformers.AutoTokenizer.from_pretrained(model_args.tokenizer_name)
 
     # Padding and eos tokens are the same
-    tokenizer.eos_token = "<|endoftext|>"  # noqa: S105
+    tokenizer.eos_token = "<|endoftext|>"#" "  # noqa: S105
     tokenizer.pad_token = tokenizer.eos_token
 
     tokenizer.model_max_length = model_args.model_max_length

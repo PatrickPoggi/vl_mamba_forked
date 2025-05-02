@@ -244,7 +244,7 @@ def pythia_generate(
         pad_token_id=0,
         do_sample=False,
     )
-    with torch.autocast("cuda", dtype=torch.bfloat16):
+    with torch.autocast("cuda", dtype=torch.float16):# dtype = torch.float16):  # dtype=torch.bfloat16
         outputs = model.generate(
             input_ids=input_ids,
             pixel_values=[pixel_values],
@@ -282,6 +282,9 @@ def evaluate() -> None:
     model_args, data_args, generation_args = parser.parse_args_into_dataclasses()
 
     model = build_model(model_args)
+
+    if hasattr(model.config, "attn_implementation"):
+        model.config.attn_implementation = "eager"
 
     tokenizer = build_tokenizer(model_args)
 
