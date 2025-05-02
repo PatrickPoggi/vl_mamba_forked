@@ -1,3 +1,66 @@
+# Forked from [vl_mamba](https://github.com/gpantaz/vl_mamba.git)
+
+This is a repository meant as a reproducibility analysis for the paper [Shaking Up VLMs: Comparing Transformers and Structured State Space Models for Vision & Language Modeling (Pantazopoulos et al., EMNLP 2024)](https://aclanthology.org/2024.emnlp-main.793/).
+
+
+## Setting up the workspace
+Even though the original repo (whose README.md is appened below) is quite clear and the repo itself was quite well maintained, a few adjustments have been necessary. In short:
+
+- Reverting to an older commit to solve broken inter-dependencies (files needed but missing)
+- Struggling a bit with the package dependencies
+- Code was not compatible with my setup: NVIDIA 2080-Ti (different architecture)
+
+Therefore, aiming at making the setup process as easy as possible, I provide my version of the repo, which I obtained by forking from an older commit and then manually fixing the code.
+
+The only thing that's left is:
+
+```bash
+# from main directory (vl_mamba)
+chmod +x prepare_dirs.sh
+./prepare_dirs.sh
+
+conda env create -f vl_mamba_conda_environment.yml
+```
+
+As `prepare_dirs.sh` automatically replicates the directory structure as in my own setup and `vl_mamba_conda_environment.yml` is the YML file describing my conda environment 
+
+NOTE: If you don't like the name of the environment because it is too long, then:
+
+```bash
+# from main directory (vl_mamba)
+mv vl_mamba_conda_environment.yml name_you_like.yml
+conda env create -f name_you_like.yml
+
+```
+
+## Reproducing the experiments I have reproduced
+
+Due to resource constraints and technical problems (i.e., mambavl_790m was unable to be loaded as, apparently, the file was broken) I wasn't able to reproduce all the results. However, I reproduced a good deal of them, selecting one dataset per task and comparing both models for the 1.4B parameters variant.
+
+In order to replicate that:
+
+```bash
+# from main directory (vl_mamba)
+chmod +x scripts/reproducibility_evaluation.sh
+./reproducibility_evaluation.sh
+```
+
+
+## Citation of the original work
+**Pantazopoulos, Georgios, Nikandrou, Malvina, Suglia, Alessandro, Lemon, Oliver, and Eshghi, Arash.**  
+*Shaking Up VLMs: Comparing Transformers and Structured State Space Models for Vision & Language Modeling*.  
+Proceedings of EMNLP 2024. [ACL Anthology](https://aclanthology.org/2024.emnlp-main.793/)  
+DOI: [10.18653/v1/2024.emnlp-main.793](https://doi.org/10.18653/v1/2024.emnlp-main.793)
+
+And link to the original repo: [link](https://github.com/gpantaz/vl_mamba)
+
+
+---
+### Original README below
+
+---
+---
+
 # Shaking Up VLMs: Comparing Transformers and Structured State Space Models for Vision \& Language Modeling (EMNLP 2024)
 [[Paper](https://arxiv.org/pdf/2409.05395)][[Model Checkpoints](#model-checkpoints)][[Data](#data)][[Training](#training)]
 
