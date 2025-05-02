@@ -1,14 +1,10 @@
 CUDA_VISIBLE_DEVICES=0 python src/vl_mamba/evaluation/evaluate_visual7w.py --dataset_cache_dir cache/datasets/ --root_dataset_path storage/datasets/ --model_name checkpoints/finetuned_pythiavl_1.4b/ --model_max_length 100 --max_new_tokens 20 --split test --output_json results/finetuned_pythiavl_1.4b/visual7w.json 
 
-CUDA_VISIBLE_DEVICES=1 python src/vl_mamba/evaluation/evaluate_visual7w.py --dataset_cache_d
-ir cache/datasets/ --root_dataset_path storage/datasets/ --model_name checkpoints/finetuned_mambavl_1.4b/ --model_max_length 100 --max_new_tokens 20 --split test --
-output_json results/visual7w.json 
+CUDA_VISIBLE_DEVICES=1 python src/vl_mamba/evaluation/evaluate_visual7w.py --dataset_cache_dir cache/datasets/ --root_dataset_path storage/datasets/ --model_name checkpoints/finetuned_mambavl_1.4b/ --model_max_length 100 --max_new_tokens 20 --split test --output_json results/visual7w.json 
 
 CUDA_VISIBLE_DEVICES=0 python src/vl_mamba/evaluation/evaluate_nocaps.py --dataset_cache_dir cache/datasets/ --root_dataset_path storage/datasets/ --model_name checkpoints/finetuned_pythiavl_1.4b/ --max_new_tokens 40 --prediction_json results2/finetuned_pythiavl_1.4b/nocaps_validation_predictions.json --groundtruth_json results2/finetuned_pythiavl_1.4b/nocaps_validation_groundtruths.json --metric_json results2/finetuned_pythiavl_1.4b/nocaps_validation_metrics.json --split validation
 
-CUDA_VISIBLE_DEVICES=1 python src/vl_mamba/evaluation/evaluate_nocaps.py --dataset_cache_dir
- cache/datasets/ --root_dataset_path storage/datasets/ --model_name checkpoints/finetuned_mambavl_1.4b/ --max_new_tokens 40 --prediction_json results2/finetuned_mambavl_1.4b/nocaps_validation_predictions.json --groundtruth_json results2/finetuned_mambavl_1.4b/nocaps_validation_groundtruths.json --metric_json results2/finetuned
-_mambavl_1.4b/nocaps_validation_metrics.json --split validation
+CUDA_VISIBLE_DEVICES=1 python src/vl_mamba/evaluation/evaluate_nocaps.py --dataset_cache_dir cache/datasets/ --root_dataset_path storage/datasets/ --model_name checkpoints/finetuned_mambavl_1.4b/ --max_new_tokens 40 --prediction_json results2/finetuned_mambavl_1.4b/nocaps_validation_predictions.json --groundtruth_json results2/finetuned_mambavl_1.4b/nocaps_validation_groundtruths.json --metric_json results2/finetuned_mambavl_1.4b/nocaps_validation_metrics.json --split validation
 
 CUDA_VISIBLE_DEVICES=0 python src/vl_mamba/evaluation/evaluate_vsr.py --dataset_cache_dir cache/datasets/ --root_dataset_path storage/datasets/ --model_name checkpoints/finetuned_pythiavl_1.4b/ --split test --output_json results2/finetuned_pythiavl_1.4b/vsr_test.json
 
